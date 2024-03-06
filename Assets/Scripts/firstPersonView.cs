@@ -82,6 +82,8 @@ public class FirstPersonView : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (MenuPausa.JuegoPausado) return;
+
         float moveFB = Input.GetAxis("Vertical") * speed;
         float moveLR = Input.GetAxis("Horizontal") * speed;
 
@@ -91,6 +93,8 @@ public class FirstPersonView : MonoBehaviour
 
     private void LookAround()
     {
+        if (MenuPausa.JuegoPausado) return;
+
         float rotX = Input.GetAxis("Mouse X") * sensitivity;
         rotY += Input.GetAxis("Mouse Y") * sensitivity;
         rotY = Mathf.Clamp(rotY, minY, maxY);
@@ -98,6 +102,7 @@ public class FirstPersonView : MonoBehaviour
         eyes.transform.localEulerAngles = new Vector3(-rotY, 0f, 0f);
         transform.Rotate(new Vector3(0f, rotX, 0f));
     }
+
 
     void GrabObject(GameObject obj)
     {
