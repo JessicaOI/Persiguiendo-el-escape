@@ -9,6 +9,7 @@ TagManager:
   - Switch
   - Puzzle
   - cuadro
+  - Rotatable2
   layers:
   - Default
   - TransparentFX
