@@ -64,7 +64,7 @@ public class FirstPersonView : MonoBehaviour
         {
             if (hit.collider.GetComponent<SwitchController>() != null)
             {
-                if (label != null) label.text = "Presiona E para Interactuar";
+                if (label != null) label.text = "Presiona E";
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
