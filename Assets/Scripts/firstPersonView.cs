@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Asegúrate de incluir el namespace para TextMeshPro
+// Asegï¿½rate de incluir el namespace para TextMeshPro
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -12,17 +12,20 @@ public class FirstPersonView : MonoBehaviour
     private Vector3 velocity;
     private Rigidbody rb;
 
-    public GameObject eyes; // Tu objeto de cámara
+    public GameObject eyes; // Tu objeto de cï¿½mara
     private float rotY = 0f;
     public float minY = -60f;
     public float maxY = 60f;
 
     public float reach = 5f; // Distancia a la que el jugador puede agarrar objetos
-    private GameObject objectInHand; // Objeto que el jugador está sujetando actualmente
+    private GameObject objectInHand; // Objeto que el jugador estï¿½ sujetando actualmente
     public LayerMask interactableLayer; // Capa en la que se encuentran los objetos interactuables
-
+    public LayerMask interactableLayerLuz;
     // Cambia el tipo de 'label' a TMP_Text para trabajar con TextMeshPro
     public TMP_Text label;
+
+    public int rango; // Agrega esta variable para el rango del rayo
+    public Camera camara; // Agrega esta variable para la cÃ¡mara
 
     private void Start()
     {
@@ -30,7 +33,7 @@ public class FirstPersonView : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         if (label != null)
         {
-            label.text = ""; // Inicializar el texto vacío
+            label.text = ""; // Inicializar el texto vacï¿½o
         }
     }
 
@@ -42,10 +45,12 @@ public class FirstPersonView : MonoBehaviour
         Ray ray = new Ray(eyes.transform.position, eyes.transform.forward);
         RaycastHit hit;
 
-        // Primero, verificamos si el jugador está sosteniendo un objeto.
+        
+
+        // Primero, verificamos si el jugador estï¿½ sosteniendo un objeto.
         if (objectInHand != null)
         {
-            // El jugador ya está sosteniendo un objeto, asegurarse de que el texto esté vacío.
+            // El jugador ya estï¿½ sosteniendo un objeto, asegurarse de que el texto estï¿½ vacï¿½o.
             if (label != null) label.text = "";
 
             // Verificar si el jugador decide soltar el objeto.
@@ -54,12 +59,33 @@ public class FirstPersonView : MonoBehaviour
                 ReleaseObject();
             }
         }
-        else if (Physics.Raycast(ray, out hit, reach, interactableLayer))
+
+        else if (Physics.Raycast(ray, out hit, reach, interactableLayerLuz))
         {
-            // Si el objeto tiene la etiqueta "television", cambiamos la interacción
+            if (hit.collider.GetComponent<SwitchController>() != null)
+            {
+                if (label != null) label.text = "Presiona E para Interactuar";
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (hit.collider.GetComponent<SwitchController>().luz == true)
+                    {
+                        hit.collider.GetComponent<SwitchController>().OnOffLuz();
+                    }
+                }
+            }
+            else
+            {
+                if (label != null) label.text = "";
+            }
+        }
+
+        else if (Physics.Raycast(ray, out hit, reach, interactableLayer)) // Luego, si no estï¿½ sosteniendo un objeto, buscamos uno para agarrar.
+        {
+            // Si el objeto tiene la etiqueta "television", cambiamos la interacciï¿½n
             if (hit.collider.gameObject.CompareTag("television"))
             {
-                if (label != null) label.text = "Presiona E"; // Cambiar mensaje para televisión
+                if (label != null) label.text = "Presiona E"; // Cambiar mensaje para televisiï¿½n
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -78,6 +104,7 @@ public class FirstPersonView : MonoBehaviour
         }
         else
         {
+            // No hay objetos cerca o enfocables, asegurarse de que el texto estï¿½ vacï¿½o.
             if (label != null) label.text = "";
         }
     }
@@ -119,8 +146,8 @@ public class FirstPersonView : MonoBehaviour
     void GrabObject(GameObject obj)
     {
         objectInHand = obj;
-        obj.GetComponent<Rigidbody>().isKinematic = true; // Hacer que el objeto no reaccione a físicas mientras es sostenido
-        obj.transform.SetParent(eyes.transform); // Hacer que el objeto siga la cámara
+        obj.GetComponent<Rigidbody>().isKinematic = true; // Hacer que el objeto no reaccione a fï¿½sicas mientras es sostenido
+        obj.transform.SetParent(eyes.transform); // Hacer que el objeto siga la cï¿½mara
     }
 
     void ReleaseObject()
@@ -128,7 +155,7 @@ public class FirstPersonView : MonoBehaviour
         if (objectInHand != null)
         {
             objectInHand.GetComponent<Rigidbody>().isKinematic = false;
-            objectInHand.transform.SetParent(null); // Remover el objeto de ser hijo de la cámara
+            objectInHand.transform.SetParent(null); // Remover el objeto de ser hijo de la cï¿½mara
             objectInHand = null;
         }
     }
