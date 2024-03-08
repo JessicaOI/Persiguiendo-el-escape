@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotateWithMouse : MonoBehaviour
 {
@@ -8,9 +9,17 @@ public class RotateWithMouse : MonoBehaviour
     private GameObject selectedParentObject; // Referencia al objeto padre que será rotado
     private float rotatableTimer = 0f;
     private float rotatable2Timer = 0f;
+    private float rotatable3Timer = 0f; // Nueva variable para el tercer objeto
     private bool hasWon = false;
     public GameObject victoryCanvas;
+    public GameObject normalCanvas;
 
+    void Start()
+    {
+        // Mostrar y desbloquear el cursor al pausar el juego
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -20,7 +29,7 @@ public class RotateWithMouse : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.CompareTag("Rotatable") || hit.transform.CompareTag("Rotatable2"))
+                if (hit.transform.CompareTag("Rotatable") || hit.transform.CompareTag("Rotatable2") || hit.transform.CompareTag("Rotatable3"))
                 {
                     // Asignamos el padre del objeto seleccionado para rotar
                     selectedParentObject = hit.transform.parent != null ? hit.transform.parent.gameObject : null;
@@ -45,18 +54,22 @@ public class RotateWithMouse : MonoBehaviour
         }
     }
 
+
     void CheckRotation()
     {
         CheckRotationForTag("Rotatable", 51, 65, ref rotatableTimer);
         CheckRotationForTag("Rotatable2", -64, -51, ref rotatable2Timer);
+        CheckRotationForTag("Rotatable3", 170, 180, ref rotatable3Timer); // Usa la nueva variable aquí
 
-        if (rotatableTimer >= 1 && rotatable2Timer >= 1 && !hasWon)
+        if (rotatableTimer >= 1 && rotatable2Timer >= 1 && rotatable3Timer >= 1 && !hasWon) // Modifica esta condición
         {
             Debug.Log("¡Has ganado!");
             hasWon = true;
             if (victoryCanvas != null)
             {
+                normalCanvas.SetActive(false);
                 victoryCanvas.SetActive(true); // Habilita el Canvas
+                
             }
             else
             {
@@ -64,6 +77,7 @@ public class RotateWithMouse : MonoBehaviour
             }
         }
     }
+
 
     void CheckRotationForTag(string tag, float minAngle, float maxAngle, ref float timer)
     {
@@ -100,4 +114,6 @@ public class RotateWithMouse : MonoBehaviour
         angle = (angle > 180) ? angle - 360 : angle;
         return angle;
     }
+
+    
 }

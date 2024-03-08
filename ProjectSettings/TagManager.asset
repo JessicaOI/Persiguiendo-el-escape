@@ -11,6 +11,8 @@ TagManager:
   - cuadro
   - Rotatable2
   - Llave
+  - reloj
+  - Rotatable3
   layers:
   - Default
   - TransparentFX

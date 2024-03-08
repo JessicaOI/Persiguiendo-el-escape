@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzle.unity
     guid: b0a93559bc0f4d34ca30af0cfcbd5604
+  - enabled: 1
+    path: Assets/Scenes/Reloj.unity
+    guid: 3144c9bff7d8ee0439e431ed18804cd0
   m_configObjects: {}
