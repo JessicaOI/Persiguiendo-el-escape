@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // Asegúrate de incluir el namespace para TextMeshPro
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FirstPersonView : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class FirstPersonView : MonoBehaviour
     public float minY = -60f;
     public float maxY = 60f;
 
-    public float reach = 10f; // Distancia a la que el jugador puede agarrar objetos
+    public float reach = 5f; // Distancia a la que el jugador puede agarrar objetos
     private GameObject objectInHand; // Objeto que el jugador está sujetando actualmente
     public LayerMask interactableLayer; // Capa en la que se encuentran los objetos interactuables
 
@@ -53,19 +54,30 @@ public class FirstPersonView : MonoBehaviour
                 ReleaseObject();
             }
         }
-        else if (Physics.Raycast(ray, out hit, reach, interactableLayer)) // Luego, si no está sosteniendo un objeto, buscamos uno para agarrar.
+        else if (Physics.Raycast(ray, out hit, reach, interactableLayer))
         {
-            // Hay un objeto enfocado y disponible para ser agarrado.
-            if (label != null) label.text = "Press E to grab";
-
-            if (Input.GetKeyDown(KeyCode.E))
+            // Si el objeto tiene la etiqueta "television", cambiamos la interacción
+            if (hit.collider.gameObject.CompareTag("television"))
             {
-                GrabObject(hit.collider.gameObject);
+                if (label != null) label.text = "Presiona E"; // Cambiar mensaje para televisión
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    SceneManager.LoadScene("tv"); // Cargar la escena "tv"
+                }
+            }
+            else // Otros objetos interactuables
+            {
+                if (label != null) label.text = "Presiona E";
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    GrabObject(hit.collider.gameObject);
+                }
             }
         }
         else
         {
-            // No hay objetos cerca o enfocables, asegurarse de que el texto esté vacío.
             if (label != null) label.text = "";
         }
     }
