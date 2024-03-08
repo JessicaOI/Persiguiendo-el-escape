@@ -1,17 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RotateWithMouse : MonoBehaviour
 {
     public Camera cam;
     public float rotateSpeed = 5f;
 
-    private GameObject selectedObject;
-    private bool rotatableLock = false;
-    private bool rotatable2Lock = false;
-
+    private GameObject selectedParentObject; // Referencia al objeto padre que será rotado
     private float rotatableTimer = 0f;
     private float rotatable2Timer = 0f;
+    private bool hasWon = false;
 
     void Update()
     {
@@ -22,80 +19,71 @@ public class RotateWithMouse : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if ((hit.transform.CompareTag("Rotatable") && !rotatableLock) ||
-                    (hit.transform.CompareTag("Rotatable2") && !rotatable2Lock))
+                if (hit.transform.CompareTag("Rotatable") || hit.transform.CompareTag("Rotatable2"))
                 {
-                    selectedObject = hit.transform.parent != null ? hit.transform.parent.gameObject : hit.transform.gameObject;
+                    // Asignamos el padre del objeto seleccionado para rotar
+                    selectedParentObject = hit.transform.parent != null ? hit.transform.parent.gameObject : null;
                 }
             }
         }
 
-        if (selectedObject != null && Input.GetMouseButton(0))
+        if (selectedParentObject != null && Input.GetMouseButton(0))
         {
             float rotateZ = Input.GetAxis("Mouse X") * rotateSpeed;
-            selectedObject.transform.Rotate(0, 0, rotateZ, Space.World);
+            selectedParentObject.transform.Rotate(0, 0, rotateZ, Space.World);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            selectedObject = null;
+            selectedParentObject = null; // Deselecciona el objeto padre cuando se suelta el botón del mouse
         }
 
-        CheckRotation();
+        if (!hasWon)
+        {
+            CheckRotation();
+        }
     }
 
     void CheckRotation()
     {
-        GameObject[] rotatables = GameObject.FindGameObjectsWithTag("Rotatable");
-        foreach (var obj in rotatables)
-        {
-            if (!rotatableLock)
-            {
-                float zRotation = NormalizeAngle(obj.transform.eulerAngles.z);
-                if (zRotation >= 50 && zRotation <= 60)
-                {
-                    rotatableTimer += Time.deltaTime;
-                    if (rotatableTimer >= 1)
-                    {
-                        Debug.Log("Rotatable en posición.");
-                        rotatableLock = true;
-                        break; // Si uno cumple la condición, sal del bucle.
-                    }
-                }
-                else
-                {
-                    rotatableTimer = 0; // Reset si sale del rango.
-                }
-            }
-        }
+        CheckRotationForTag("Rotatable", 50, 60, ref rotatableTimer);
+        CheckRotationForTag("Rotatable2", -60, -50, ref rotatable2Timer);
 
-        GameObject[] rotatable2s = GameObject.FindGameObjectsWithTag("Rotatable2");
-        foreach (var obj in rotatable2s)
-        {
-            if (!rotatable2Lock)
-            {
-                float zRotation = NormalizeAngle(obj.transform.eulerAngles.z);
-                if (zRotation <= 95 && zRotation >= 85)
-                {
-                    rotatable2Timer += Time.deltaTime;
-                    if (rotatable2Timer >= 1)
-                    {
-                        Debug.Log("Rotatable2 en posición.");
-                        rotatable2Lock = true;
-                        break; // Si uno cumple la condición, sal del bucle.
-                    }
-                }
-                else
-                {
-                    rotatable2Timer = 0; // Reset si sale del rango.
-                }
-            }
-        }
-
-        if (rotatableLock && rotatable2Lock)
+        if (rotatableTimer >= 1 && rotatable2Timer >= 1 && !hasWon)
         {
             Debug.Log("¡Has ganado!");
-            SceneManager.LoadScene("Final");
+            hasWon = true;
+            // Aquí puedes añadir cualquier otra lógica que necesites ejecutar al ganar.
+        }
+    }
+
+    void CheckRotationForTag(string tag, float minAngle, float maxAngle, ref float timer)
+    {
+        bool isInCorrectRotation = false;
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
+        foreach (var obj in objectsWithTag)
+        {
+            // Asumimos que el padre es el que debe estar en el rango correcto de rotación.
+            GameObject parentObj = obj.transform.parent != null ? obj.transform.parent.gameObject : obj;
+            float zRotation = NormalizeAngle(parentObj.transform.eulerAngles.z);
+            if (zRotation >= minAngle && zRotation <= maxAngle)
+            {
+                isInCorrectRotation = true;
+            }
+            else
+            {
+                isInCorrectRotation = false;
+                break; // Si alguno de los objetos no está en el rango correcto, no necesitamos verificar más.
+            }
+        }
+
+        if (isInCorrectRotation)
+        {
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0; // Reinicia el temporizador si el objeto sale del rango.
         }
     }
 
