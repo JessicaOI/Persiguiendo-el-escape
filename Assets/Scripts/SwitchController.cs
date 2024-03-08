@@ -10,7 +10,6 @@ public class SwitchController : MonoBehaviour
     private bool luzOnOff;
 
     public LlaveScript llaveScript;
-
     public void OnOffLuz()
     {
         luzOnOff = !luzOnOff;
@@ -52,8 +51,9 @@ public class SwitchController : MonoBehaviour
 
         if (ganaste)
         {
+            llaveScript.acertijo1Resuelto = true;
+            llaveScript.MostrarLlave();
             Debug.Log("¡Ganaste!");
-            llaveScript.acertijoResuelto = true;
         }
     }
 }

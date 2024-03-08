@@ -1223,6 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d445902315fa70146aa33113cf9f5f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  llaveScript: {fileID: 8831852181934034665, guid: 553d73fccbdc06944b3f98e9d46d0e29, type: 3}
   textoUI: {fileID: 777919247}
   mensajeEspecialUI: {fileID: 1374034957}
 --- !u!1 &1345807431
