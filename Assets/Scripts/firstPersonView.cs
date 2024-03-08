@@ -17,7 +17,7 @@ public class FirstPersonView : MonoBehaviour
     public float minY = -60f;
     public float maxY = 60f;
 
-    public float reach = 5f; // Distancia a la que el jugador puede agarrar objetos
+    public float reach = 4f; // Distancia a la que el jugador puede agarrar objetos
     private GameObject objectInHand; // Objeto que el jugador est� sujetando actualmente
     public LayerMask interactableLayer; // Capa en la que se encuentran los objetos interactuables
     public LayerMask interactableLayerLuz;
@@ -90,6 +90,15 @@ public class FirstPersonView : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     SceneManager.LoadScene("tv"); // Cargar la escena "tv"
+                }
+            }
+            else if (hit.collider.gameObject.CompareTag("cuadro"))
+            {
+                if (label != null) label.text = "Presiona E"; // Cambiar mensaje para televisi�n
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    SceneManager.LoadScene("Puzzle"); // Cargar la escena "tv"
                 }
             }
             else // Otros objetos interactuables

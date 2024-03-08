@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private Transform gameTransform;
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour {
         size = 3;
         CreateGamePieces(0.01f);
         Shuffle(); // Mezclar el rompecabezas al inicio
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour {
         if (!puzzleCompleted && CheckCompletion()) {
             puzzleCompleted = true;
             PlayCompletionSound();
+            StartCoroutine(CambioDeEscena());
         }
 
         if (Input.GetMouseButtonDown(0)) {
@@ -74,6 +78,11 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+    }
+    IEnumerator CambioDeEscena()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("escena1"); // Cambiar a la escena "escena1"
     }
 
     private void PlayCompletionSound() {

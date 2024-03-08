@@ -7127,7 +7127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2508a6d3345f014daed8b7f8cd4d4b8, type: 2}
+  - {fileID: 2100000, guid: 91d843a039a46d4488eb2d83a03b616d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7263,9 +7263,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4833674169271488361}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Painting (1)
-  m_TagString: Untagged
+  m_TagString: cuadro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7281,13 +7281,35 @@ GameObject:
   - component: {fileID: 4833674169271488365}
   - component: {fileID: 4833674169270718285}
   - component: {fileID: 4833674169269718413}
-  m_Layer: 0
+  - component: {fileID: 4833674169271915342}
+  m_Layer: 3
   m_Name: Farme
-  m_TagString: Untagged
+  m_TagString: cuadro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &4833674169271915342
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833674169271915341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00027967934, y: 0.0004100001, z: 0.0000150002015}
+  m_Center: {x: -0.00000007242488, y: -6.548362e-11, z: -2.5579538e-10}
 --- !u!1 &4833674169271915343
 GameObject:
   m_ObjectHideFlags: 0
@@ -7299,7 +7321,7 @@ GameObject:
   - component: {fileID: 4833674169271488367}
   - component: {fileID: 4833674169270718287}
   - component: {fileID: 4833674169269718415}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
