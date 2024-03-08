@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement; // Asegúrate de agregar este namespace
+using UnityEngine.SceneManagement; // Asegï¿½rate de agregar este namespace
 
 public class botones : MonoBehaviour
 {
+    public LlaveScript llaveScript;
     public TextMeshProUGUI textoUI;
     public TextMeshProUGUI mensajeEspecialUI; // Para mostrar mensajes como "Correcto"
     private string textoActual = "";
@@ -14,7 +15,7 @@ public class botones : MonoBehaviour
     {
         if (textoUI == null || mensajeEspecialUI == null)
         {
-            Debug.LogError("Uno o más componentes no se han asignado en el inspector.");
+            Debug.LogError("Uno o mï¿½s componentes no se han asignado en el inspector.");
         }
         // Mostrar y desbloquear el cursor al pausar el juego
         Cursor.lockState = CursorLockMode.None;
@@ -27,15 +28,17 @@ public class botones : MonoBehaviour
         {
             textoActual += numero;
             textoUI.text = textoActual;
-            Debug.Log($"El botón del número {numero} fue presionado.");
+            Debug.Log($"El botï¿½n del nï¿½mero {numero} fue presionado.");
 
             if (textoActual.Length == 4)
             {
                 if (textoActual == "7165")
                 {
                     mensajeEspecialUI.text = "Correcto"; // Mostrar mensaje de correcto
-                    //StartCoroutine(CambioDeEscena());
+                    //StartCoroutine(CambioDeEscena());  
                     SceneManager.LoadScene("escena1"); // Cambiar a la escena "escena1"
+                    llaveScript.acertijo1Resuelto = true;
+                    llaveScript.MostrarLlave();
                 }
                 else
                 {
@@ -53,7 +56,7 @@ public class botones : MonoBehaviour
     }*/
     
 
-    // Otras funciones como Numero1(), Numero7(), etc., deberían llamar a PresionarBoton() con el número correspondiente
+    // Otras funciones como Numero1(), Numero7(), etc., deberï¿½an llamar a PresionarBoton() con el nï¿½mero correspondiente
     public void Numero1() { PresionarBoton("1"); }
     public void Numero7() { PresionarBoton("7"); }
     public void Numero6() { PresionarBoton("6"); }
