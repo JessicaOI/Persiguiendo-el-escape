@@ -1385,6 +1385,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luzObjeto: {fileID: 1422113448}
+  pointLights:
+  - {fileID: 1801723744}
+  - {fileID: 838809058}
+  - {fileID: 1746017}
+  - {fileID: 240478403}
+  - {fileID: 1422113448}
   luz: 1
 --- !u!65 &557594737
 BoxCollider:
@@ -1425,6 +1431,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luzObjeto: {fileID: 838809058}
+  pointLights:
+  - {fileID: 1801723744}
+  - {fileID: 838809058}
+  - {fileID: 1746017}
+  - {fileID: 240478403}
+  - {fileID: 1422113448}
   luz: 1
 --- !u!65 &582846277
 BoxCollider:
@@ -2773,6 +2785,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luzObjeto: {fileID: 240478403}
+  pointLights:
+  - {fileID: 1801723744}
+  - {fileID: 838809058}
+  - {fileID: 1746017}
+  - {fileID: 240478403}
+  - {fileID: 1422113448}
   luz: 1
 --- !u!65 &978986324
 BoxCollider:
@@ -4017,6 +4035,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luzObjeto: {fileID: 1801723744}
+  pointLights:
+  - {fileID: 1801723744}
+  - {fileID: 838809058}
+  - {fileID: 1746017}
+  - {fileID: 240478403}
+  - {fileID: 1422113448}
   luz: 1
 --- !u!1 &1399491309
 GameObject:
@@ -4231,9 +4255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f817ce883437842b8d1d9b48165a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetosActivables: []
-  objetosActivadosNecesarios: 3
-  objetosDesactivadosNecesarios: 2
+  objetoControlado: {fileID: 0}
 --- !u!1001 &1422350577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4744,6 +4766,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luzObjeto: {fileID: 1746017}
+  pointLights:
+  - {fileID: 1801723744}
+  - {fileID: 838809058}
+  - {fileID: 1746017}
+  - {fileID: 240478403}
+  - {fileID: 1422113448}
   luz: 1
 --- !u!65 &1572085779
 BoxCollider:
@@ -6154,9 +6182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f817ce883437842b8d1d9b48165a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetosActivables: []
-  objetosActivadosNecesarios: -33
-  objetosDesactivadosNecesarios: 2
+  objetoControlado: {fileID: 1422113448}
 --- !u!1001 &2111826795
 PrefabInstance:
   m_ObjectHideFlags: 0
