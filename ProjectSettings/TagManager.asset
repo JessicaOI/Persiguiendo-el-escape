@@ -8,6 +8,7 @@ TagManager:
   - Rotatable
   - Switch
   - Puzzle
+  - Llave
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,6 @@ TagManager:
   - UI
   - televisionLayer
   - luz
-  - 
   - 
   - 
   - 
