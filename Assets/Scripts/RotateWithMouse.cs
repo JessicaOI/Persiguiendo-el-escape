@@ -9,6 +9,7 @@ public class RotateWithMouse : MonoBehaviour
     private float rotatableTimer = 0f;
     private float rotatable2Timer = 0f;
     private bool hasWon = false;
+    public GameObject victoryCanvas;
 
     void Update()
     {
@@ -46,14 +47,21 @@ public class RotateWithMouse : MonoBehaviour
 
     void CheckRotation()
     {
-        CheckRotationForTag("Rotatable", 50, 60, ref rotatableTimer);
-        CheckRotationForTag("Rotatable2", -60, -50, ref rotatable2Timer);
+        CheckRotationForTag("Rotatable", 51, 65, ref rotatableTimer);
+        CheckRotationForTag("Rotatable2", -64, -51, ref rotatable2Timer);
 
         if (rotatableTimer >= 1 && rotatable2Timer >= 1 && !hasWon)
         {
             Debug.Log("¡Has ganado!");
             hasWon = true;
-            // Aquí puedes añadir cualquier otra lógica que necesites ejecutar al ganar.
+            if (victoryCanvas != null)
+            {
+                victoryCanvas.SetActive(true); // Habilita el Canvas
+            }
+            else
+            {
+                Debug.LogWarning("No se ha asignado un Victory Canvas al script.");
+            }
         }
     }
 
