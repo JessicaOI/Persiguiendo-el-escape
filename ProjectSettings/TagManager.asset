@@ -10,6 +10,7 @@ TagManager:
   - Puzzle
   - cuadro
   - Rotatable2
+  - Llave
   layers:
   - Default
   - TransparentFX
