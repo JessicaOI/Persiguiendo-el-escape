@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Switch
+  - television
+  - Rotatable
   layers:
   - Default
   - TransparentFX
@@ -13,6 +15,7 @@ TagManager:
   - Water
   - UI
   - luz
+  - televisionLayer
   - 
   - 
   - 
