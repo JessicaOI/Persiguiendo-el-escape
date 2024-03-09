@@ -27,15 +27,38 @@ public class FirstPersonView : MonoBehaviour
     public int rango; // Agrega esta variable para el rango del rayo
     public Camera camara; // Agrega esta variable para la cámara
 
+    public GameObject objetoParaLlavePuzzle; // Asigna el GameObject correspondiente en el Inspector
+    public GameObject objetoParaLlaveTele; // Asigna el GameObject correspondiente en el Inspector
+
+
     private void Start()
     {
+        Debug.Log($"Variable llavePuzzle  {GlobalVariables.llavePuzzle}");
+        Debug.Log($"Variable llavePuzzle  {GlobalVariables.llaveTele}");
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         if (label != null)
         {
-            label.text = ""; // Inicializar el texto vac�o
+            label.text = ""; // Inicializar el texto vacío
         }
+
+        // Activar GameObjects si las condiciones específicas se cumplen, sin desactivarlos explícitamente si no se cumplen
+        if (GlobalVariables.llavePuzzle == 1)
+        {
+            objetoParaLlavePuzzle.SetActive(true);
+            GlobalVariables.llavePuzzle += 1;
+        }
+        // No hay acción aquí para cuando GlobalVariables.llavePuzzle no es 1
+
+        if (GlobalVariables.llaveTele == 1)
+        {
+            objetoParaLlaveTele.SetActive(true);
+            GlobalVariables.llaveTele += 1;
+        }
+        // No hay acción aquí para cuando GlobalVariables.llaveTele no es 1
     }
+
+
 
     void Update()
     {

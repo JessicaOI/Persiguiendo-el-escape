@@ -52,8 +52,10 @@ public class SwitchController : MonoBehaviour
 
         if (ganaste)
         {
+            llaveScript.acertijo1Resuelto = true;
+            llaveScript.MostrarLlave();
             Debug.Log("¡Ganaste!");
-            llaveScript.acertijoResuelto = true;
+            
         }
     }
 }

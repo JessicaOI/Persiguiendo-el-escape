@@ -34,6 +34,7 @@ public class botones : MonoBehaviour
                 if (textoActual == "7165")
                 {
                     mensajeEspecialUI.text = "Correcto"; // Mostrar mensaje de correcto
+                    GlobalVariables.llaveTele += 1;
                     //StartCoroutine(CambioDeEscena());
                     SceneManager.LoadScene("escena1"); // Cambiar a la escena "escena1"
                 }

@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class LlaveScript : MonoBehaviour
 {
-    public GameObject llavePrefab; // El prefab de la llave que quieres instanciar
-    public bool acertijoResuelto = false;
-    public Vector3 posicionCreacion; // La posición donde quieres crear la llave
+    public bool acertijo1Resuelto = false;
 
-    void Start()
+    // Método para mostrar la llave si los acertijos están resueltos
+
+    public void MostrarLlave()
     {
-        if (acertijoResuelto)
+        if (acertijo1Resuelto == true)
         {
-            // Si el acertijo está resuelto, instanciar la llave en la posición deseada
-            Instantiate(llavePrefab, posicionCreacion, Quaternion.identity);
+            // Activa el objeto de la llave en la escena
+            gameObject.SetActive(true);
         }
     }
 }

@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour {
         if (!puzzleCompleted && CheckCompletion()) {
             puzzleCompleted = true;
             PlayCompletionSound();
+            GlobalVariables.llavePuzzle += 1;
             StartCoroutine(CambioDeEscena());
         }
 
