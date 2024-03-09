@@ -1479,6 +1479,7 @@ MonoBehaviour:
   - {fileID: 1422113448}
   luz: 1
   llaveScript: {fileID: 885856281}
+  victorySound: {fileID: 8300000, guid: 6e0382f13bf5b134995d2f93c481f48d, type: 3}
 --- !u!65 &557594737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1601,6 +1602,7 @@ MonoBehaviour:
   - {fileID: 1422113448}
   luz: 1
   llaveScript: {fileID: 885856281}
+  victorySound: {fileID: 8300000, guid: 6e0382f13bf5b134995d2f93c481f48d, type: 3}
 --- !u!65 &582846277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2934,7 +2936,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:35:00
+  m_text: 00:40:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3530,6 +3532,7 @@ MonoBehaviour:
   - {fileID: 1422113448}
   luz: 1
   llaveScript: {fileID: 885856281}
+  victorySound: {fileID: 8300000, guid: 6e0382f13bf5b134995d2f93c481f48d, type: 3}
 --- !u!65 &978986324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4943,6 +4946,7 @@ MonoBehaviour:
   - {fileID: 1422113448}
   luz: 1
   llaveScript: {fileID: 885856281}
+  victorySound: {fileID: 8300000, guid: 6e0382f13bf5b134995d2f93c481f48d, type: 3}
 --- !u!1 &1399491309
 GameObject:
   m_ObjectHideFlags: 0
@@ -5648,6 +5652,7 @@ MonoBehaviour:
   - {fileID: 1422113448}
   luz: 1
   llaveScript: {fileID: 885856281}
+  victorySound: {fileID: 8300000, guid: 6e0382f13bf5b134995d2f93c481f48d, type: 3}
 --- !u!65 &1572085779
 BoxCollider:
   m_ObjectHideFlags: 0

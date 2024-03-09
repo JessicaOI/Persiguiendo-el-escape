@@ -10,6 +10,7 @@ public class SwitchController : MonoBehaviour
     private bool luzOnOff;
 
     public LlaveScript llaveScript;
+    // Se han eliminado las referencias a victorySound, audioSource, y hasPlayedVictorySound.
 
     public void OnOffLuz()
     {
@@ -54,8 +55,9 @@ public class SwitchController : MonoBehaviour
         {
             llaveScript.acertijo1Resuelto = true;
             llaveScript.MostrarLlave();
+            // Se ha eliminado la línea que reproducía el sonido.
             Debug.Log("¡Ganaste!");
-            
+
         }
     }
 }
